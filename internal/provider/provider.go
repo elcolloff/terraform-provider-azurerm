@@ -511,13 +511,14 @@ func providerConfigure(p *schema.Provider, testName string) schema.ConfigureCont
 // cloud environment and authentication-related settings, use the providerConfigure function.
 func buildClient(ctx context.Context, p *schema.Provider, d *schema.ResourceData, authConfig *auth.Credentials, testName string) (*clients.Client, diag.Diagnostics) {
 	providerRegistrations := d.Get("resource_provider_registrations").(string)
-
-	// TODO: Remove in v5.0
-	if d.Get("skip_provider_registration").(bool) {
-		if providerRegistrations != resourceproviders.ProviderRegistrationsLegacy {
-			return nil, diag.Errorf("provider property `skip_provider_registration` cannot be set at the same time as `resource_provider_registrations`, please remove `skip_provider_registration` from your configuration or unset the `ARM_SKIP_PROVIDER_REGISTRATION` environment variable")
+	
+	if !providerfeatures.FivePointOh() {
+		if d.Get("skip_provider_registration").(bool) {
+			if providerRegistrations != resourceproviders.ProviderRegistrationsLegacy {
+				return nil, diag.Errorf("provider property `skip_provider_registration` cannot be set at the same time as `resource_provider_registrations`, please remove `skip_provider_registration` from your configuration or unset the `ARM_SKIP_PROVIDER_REGISTRATION` environment variable")
+			}
+			providerRegistrations = resourceproviders.ProviderRegistrationsNone
 		}
-		providerRegistrations = resourceproviders.ProviderRegistrationsNone
 	}
 
 	requiredResourceProviders, err := resourceproviders.GetResourceProvidersSet(providerRegistrations)
