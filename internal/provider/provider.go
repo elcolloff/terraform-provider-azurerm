@@ -511,7 +511,7 @@ func providerConfigure(p *schema.Provider, testName string) schema.ConfigureCont
 // cloud environment and authentication-related settings, use the providerConfigure function.
 func buildClient(ctx context.Context, p *schema.Provider, d *schema.ResourceData, authConfig *auth.Credentials, testName string) (*clients.Client, diag.Diagnostics) {
 	providerRegistrations := d.Get("resource_provider_registrations").(string)
-	
+
 	if !providerfeatures.FivePointOh() {
 		if d.Get("skip_provider_registration").(bool) {
 			if providerRegistrations != resourceproviders.ProviderRegistrationsLegacy {

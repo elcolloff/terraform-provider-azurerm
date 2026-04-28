@@ -342,7 +342,7 @@ func defaultFeaturesList() types.List {
 	enhancedValidationList, _ := basetypes.NewListValue(types.ObjectType{}.WithAttributeTypes(EnhancedValidationModelAttributes), []attr.Value{enhancedValidation})
 
 	fData, d := basetypes.NewObjectValue(FeaturesAttributes, map[string]attr.Value{
-		"enhanced_validation":       enhancedValidationList,
+		"enhanced_validation":        enhancedValidationList,
 		"api_management":             apiManagementList,
 		"app_configuration":          appConfigurationList,
 		"application_insights":       applicationInsightsList,
