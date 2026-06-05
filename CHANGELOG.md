@@ -1,3 +1,16 @@
+## 4.76.0 (Unreleased)
+
+ENHANCEMENTS:
+
+* dependencies: `loganalytics` - update API version from `2023-09-01` to `2025-02-01` ([#00000](https://github.com/hashicorp/terraform-provider-azurerm/issues/00000))
+* Data Source: `azurerm_log_analytics_workspace` - export the `internet_ingestion_access_type` and `internet_query_access_type` attributes ([#00000](https://github.com/hashicorp/terraform-provider-azurerm/issues/00000))
+* `azurerm_log_analytics_workspace` - add support for the `internet_ingestion_access_type` and `internet_query_access_type` properties, including the new `SecuredByPerimeter` value ([#00000](https://github.com/hashicorp/terraform-provider-azurerm/issues/00000))
+
+DEPRECATIONS:
+
+* `azurerm_log_analytics_workspace` - the `internet_ingestion_enabled` property has been deprecated in favour of the `internet_ingestion_access_type` property and will be removed in v5.0 of the provider ([#00000](https://github.com/hashicorp/terraform-provider-azurerm/issues/00000))
+* `azurerm_log_analytics_workspace` - the `internet_query_enabled` property has been deprecated in favour of the `internet_query_access_type` property and will be removed in v5.0 of the provider ([#00000](https://github.com/hashicorp/terraform-provider-azurerm/issues/00000))
+
 ## 4.75.0 (June 01, 2026)
 
 FEATURES:
